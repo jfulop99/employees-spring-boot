@@ -16,6 +16,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Controller
@@ -89,7 +90,7 @@ public class EmployeesController {
     private final String UPLOAD_DIR = "./uploads/";
 
     @GetMapping("/file")
-    public String homepage() {
+    public String fileUpload() {
         return "fileUpload";
     }
 
@@ -103,7 +104,7 @@ public class EmployeesController {
         }
 
         // normalize the file path
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
 
         // save the file on the local file system
         try {
